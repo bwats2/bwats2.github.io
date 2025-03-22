@@ -1,268 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Github, Linkedin, BookOpen, Mail, AlertTriangle } from 'lucide-react'; // Import icons
-import { cn } from "@/lib/utils";
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<!-- <meta http-equiv="refresh" content="0;url=http://linkedin.com/in/bmwatson13" /> -->
+		<title>Brian M. Watson</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-const interests = [
-    "Web Development",
-    "Data Science",
-    "Machine Learning",
-    "Open Source Contributions",
-    "Problem Solving",
-    "Clean Code",
-    "Software Architecture",
-    "Continuous Learning",
-];
+		<!-- Header -->
+			<header id="header">
+				<h1>Brian M. Watson</h1>
+				<p>Website is currently under construction. Please connect with me on <a href="http://linkedin.com/in/bmwatson13">LinkedIn</a>.</p>
+			</header>
 
-// Function to obfuscate the email address
-const obfuscateEmail = (email: string) => {
-    let obfuscated = '';
-    for (let i = 0; i < email.length; i++) {
-        obfuscated += email.charCodeAt(i) + ',';
-    }
-    return obfuscated.slice(0, -1); // Remove the trailing comma
-};
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="mailto:hello@brianmwatson.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; BW.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
 
-const BrianMWatsonWebsite = () => {
-    const rawEmail = "your-email@example.com"; // Replace with your actual email
-    const obfuscatedEmail = obfuscateEmail(rawEmail);
-    const [showAllergies, setShowAllergies] = useState(false);
-    const [accessCode, setAccessCode] = useState('');
-    const [bgColor, setBgColor] = useState('bg-gradient-to-br from-gray-900 to-black');
-    const [showAccessCodeInput, setShowAccessCodeInput] = useState(false); // New state variable
-    const accessCodeInputRef = useRef<HTMLInputElement>(null);
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
 
-    // Use a function to construct the mailto link in the onClick handler
-    const getMailtoLink = () => {
-        const emailParts = obfuscatedEmail.split(',').map(Number);
-        const reconstructedEmail = String.fromCharCode(...emailParts);
-        return `mailto:${reconstructedEmail}`;
-    };
-
-    // Simulate a key combination (e.g., Ctrl+Shift+A) to reveal the allergies.
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.ctrlKey && event.shiftKey && event.key === 'a') { //  Ctrl+Shift+A
-                setShowAllergies(true);
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
-
-    const handleAccessCodeSubmit = () => {
-        if (accessCode.toLowerCase() === 'allergies') { //  "allergies"
-            setShowAllergies(true);
-        } else {
-            alert('Incorrect access code. Please try again.'); // Provide user feedback
-            setAccessCode(''); // Clear the input field
-            if (accessCodeInputRef.current) {
-                accessCodeInputRef.current.focus();
-            }
-        }
-    };
-
-    const handleEllipsisClick = () => {
-        setShowAccessCodeInput(true); // Show the input field
-    };
-
-    useEffect(() => {
-        if (showAccessCodeInput && accessCodeInputRef.current) {
-            accessCodeInputRef.current.focus();
-        }
-    }, [showAccessCodeInput]);
-
-    return (
-        <div className={cn("min-h-screen p-4 md:p-8 transition-all duration-500", bgColor)}>
-            <div className="max-w-4xl mx-auto space-y-8">
-                <div className="text-center space-y-4">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                        Brian M. Watson
-                    </h1>
-                    <p className="text-gray-400 text-lg sm:text-xl">
-                        Developer
-                    </p>
-                    <div className="flex justify-center gap-4">
-                        <Button
-                            variant="outline"
-                            className="text-gray-300 hover:text-white hover:bg-blue-500/20 border-blue-500/30"
-                            onClick={() => window.open('https://www.linkedin.com/in/brianmwatson/', '_blank')}
-                            aria-label="LinkedIn Profile" // Added aria-label
-                        >
-                            <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="text-gray-300 hover:text-white hover:bg-purple-500/20 border-purple-500/30"
-                            onClick={() => window.open('https://www.goodreads.com/user/show/123456789-brian-watson', '_blank')} // Replace with actual Goodreads link
-                            aria-label="Goodreads Profile"  // Added aria-label
-                        >
-                            <BookOpen className="mr-2 h-4 w-4" /> Goodreads
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="text-gray-300 hover:text-white hover:bg-gray-700/50 border-gray-700/50"
-                            onClick={() => window.open('https://github.com/your-github-username', '_blank')} // Replace with your github
-                            aria-label="GitHub Profile"  // Added aria-label
-                        >
-                            <Github className="mr-2 h-4 w-4" /> Github
-                        </Button>
-                    </div>
-                </div>
-
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-200">About Me</h2>
-                    <p className="text-gray-400 leading-relaxed">
-                        Hello! I'm Brian M. Watson, a passionate developer. I enjoy the challenge of solving technical problems. My expertise spans across various technologies,
-                        and I'm always eager to learn more and contribute to the open-source community.
-                    </p>
-                </section>
-
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-200">My Interests</h2>
-                    <div className="flex flex-wrap gap-2">
-                        {interests.map((interest, index) => (
-                            <Badge
-                                key={index}
-                                variant="secondary"
-                                className="bg-purple-500/20 text-purple-300 border-purple-500/30"
-                            >
-                                {interest}
-                            </Badge>
-                        ))}
-                    </div>
-                    <p className="text-gray-400 leading-relaxed">
-                        I'm particularly fascinated by  {interests.slice(0, 3).join(', ')} and how they can be used to build innovative and impactful software. I am also interested in  {interests.slice(3,).join(', ')}.
-                    </p>
-                </section>
-
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-200">Featured Projects & Contributions</h2>
-                    <p className="text-gray-400 leading-relaxed">
-                        While my portfolio is still growing, I'm actively working on personal projects and contributing to open-source initiatives.  Here's a glimpse into some areas I'm exploring:
-                    </p>
-                    <ul className="list-disc list-inside space-y-2 text-gray-400">
-                        <li>
-                            <span className="font-medium">Open Source Contributions:</span> I'm committed to giving back to the community by contributing to projects on platforms like GitHub.  I believe in the power of collaborative development and knowledge sharing.
-                        </li>
-                        <li>
-                            <span className="font-medium">Personal Projects:</span>  I'm currently developing  applications to hone my skills in full-stack development.
-                        </li>
-                        <li>
-                            <span className="font-medium">Continuous Learning:</span> The world of technology is constantly evolving, and I'm dedicated to staying up-to-date with the latest trends and best practices. I'm currently exploring new technologies and frameworks.
-                        </li>
-                    </ul>
-                </section>
-
-                <section className="space-y-6 text-center">
-                    <h2 className="text-2xl font-semibold text-gray-200">Let's Connect!</h2>
-                    <p className="text-gray-400 mb-4">
-                        I'm always open to connecting with fellow developers, learning about new opportunities, and collaborating on exciting projects.  Feel free to reach out to me!
-                    </p>
-                    <div className="flex justify-center">
-                        <Button
-                            size="lg"
-                            className="bg-gradient-to-r from-green-400 to-blue-500 text-white hover:from-green-500 hover:to-blue-600
-                                       px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-xl font-semibold
-                                       flex items-center gap-3"
-                            onClick={() => {
-                                window.location.href = getMailtoLink();
-                            }}
-                            aria-label="Contact me via Email" // Added aria-label
-                        >
-                            <Mail className="h-6 w-6" />
-                            Contact Me via Email
-                        </Button>
-                    </div>
-                </section>
-
-                {/* Ellipsis and Access Code Input */}
-                {!showAllergies && (
-                    <div className="space-y-4">
-                        {!showAccessCodeInput && (
-                            <div
-                                className="text-center text-gray-400 cursor-pointer text-2xl"
-                                onClick={handleEllipsisClick}
-                                role="button"
-                                tabIndex={0}
-                                aria-label="Show restricted content"
-                            >
-                                ...
-                            </div>
-                        )}
-                        {showAccessCodeInput && (
-                            <>
-                                <h2 className="text-xl font-semibold text-gray-200 text-center">Access Extra Content</h2>
-                                <p className="text-gray-400 text-center">
-                                    Enter the access code to view information intended for friends and family.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Access Code"
-                                        value={accessCode}
-                                        onChange={(e) => setAccessCode(e.target.value)}
-                                        className="w-full sm:w-auto px-4 py-2 rounded-md bg-black/20 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        aria-label="Enter Access Code" // Added aria-label
-                                        ref={accessCodeInputRef}
-                                    />
-                                    <Button
-                                        onClick={handleAccessCodeSubmit}
-                                        className="bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 hover:text-white border border-blue-500/30"
-                                    >
-                                        Submit
-                                    </Button>
-                                </div>
-                                <p className="text-gray-500 text-center text-sm">
-                                    (Hint: Think of what might need this information)
-                                </p>
-                            </>
-                        )}
-                    </div>
-                )}
-
-                {showAllergies && (
-                    <Card className="bg-red-500/10 border border-red-500/20 text-red-300">
-                        <CardHeader>
-                            <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                                <AlertTriangle className="h-5 w-5" />
-                                Food Allergies
-                            </CardTitle>
-                            <CardDescription>
-                                For friends and family! Please be aware of the following:
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <ul className="list-disc list-inside space-y-2">
-                                <li>Peanuts</li>
-                                <li>Tree nuts (almonds, walnuts, etc.)</li>
-                                <li>Shellfish</li>
-                                <li>Dairy</li>
-                                <li>Eggs</li>
-                                <li>Soy</li>
-                                {/* Add all your allergies here */}
-                            </ul>
-                            <p className="mt-4 text-sm">
-                                <span className="font-bold">Important:</span> These allergies can cause severe reactions.  Please
-                                take extra care when preparing food for me.
-                            </p>
-                        </CardContent>
-                    </Card>
-                )}
-
-                <footer className="text-center text-gray-500 text-sm">
-                    &copy; {new Date().getFullYear()} Brian M. Watson. All rights reserved.
-                </footer>
-            </div>
-        </div>
-    );
-};
-
-export default BrianMWatsonWebsite;
-
+	</body>
+</html>
