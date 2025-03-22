@@ -215,7 +215,7 @@
        
 
         accessCodeSubmit.addEventListener('click', () => {
-            if (accessCodeInput.value.toLowerCase() === 'allergies') {
+            if (accessCodeInput.value.trim().toLowerCase() === 'allergies') {
                 allergiesSection.classList.remove('hidden-section');
                 allergiesSection.classList.add('show-section');
                
